@@ -1,1 +1,1 @@
-<h1 center="true">Bloxd.io Crafty</h1>
+<h1 align="center">Bloxd.io Crafty</h1>
