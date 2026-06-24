@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Texture Pack Archive Converter</title>
+    
+    <!-- Primary Library Loader -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; line-height: 1.6; }
+        .box { border: 2px dashed #007bff; padding: 30px; text-align: center; margin-bottom: 20px; cursor: pointer; background: #fdfdfd; border-radius: 8px; }
+        .box:hover { background: #f4f8ff; }
+        button { background: #007bff; color: white; border: none; padding: 12px 24px; cursor: pointer; font-size: 16px; border-radius: 4px; width: 100%; font-weight: bold; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        #log { background: #1e1e1e; color: #00ff00; border: 1px solid #333; padding: 15px; max-height: 250px; overflow-y: auto; font-family: monospace; font-size: 13px; border-radius: 6px; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <h2>Texture Pack Archive Converter</h2>
+    <p>Select your compressed Minecraft Bedrock pack (<strong>.zip</strong> or <strong>.mcpack</strong>). The tool will unpack it in memory, swap the paths, and generate a Bloxd zip.</p>
+
+    <!-- Enforced File Input Box (accepts .zip and .mcpack) -->
+    <div class="box" onclick="document.getElementById('fileInput').click()">
+        <p style="font-size: 18px; margin: 0; color: #007bff;">📦 Click to select a .zip or .mcpack file</p>
+        <input type="file" id="fileInput" accept=".zip,.mcpack" style="display: none;">
+    </div>
+
+    <button id="convertBtn" disabled>Convert and Download Pack</button>
+
+    <h3>Process Log:</h3>
+    <div id="log">Awaiting file upload...</div>
+
+    <!-- Fallback Loader Strategy via Modern Modules -->
+    <script type="module">
+        // If the traditional script script fails, import it dynamically via Skypack CDN
+        if (typeof window.JSZip === 'undefined') {
+            try {
+                const module = await import('https://cdn.skypack.dev/jszip@3.10.1');
+                window.JSZip = module.default;
+                console.log("Successfully loaded JSZip via Module Fallback channel.");
+            } catch (e) {
+                console.error("All library network paths blocked.");
+            }
+        }
+    </script>
+
+    <script>
+        // Parallel lists: Match positions exactly
+        const mcPaths = [
+            "textures/blocks/dirt.png",
+            "textures/blocks/stone.png",
+            "textures/blocks/sand.png",
+            "textures/blocks/red_sand.png",
+            "textures/blocks/deepslate/deepslate.png",
+            "textures/blocks/bedrock.png",
+            "textures/blocks/log_oak.png",
+            "textures/blocks/log_spruce.png",
+            "textures/blocks/log_birch.png",
+            "textures/blocks/log_jungle.png",
+            "textures/blocks/log_spruce.png",
+            "textures/blocks/log_big_oak.png",
+            "textures/blocks/log_acacia.png",
+            "textures/blocks/pale_oak_log_side.png",
+            "textures/blocks/cherry_log_side.png",
+            "textures/blocks/coal_ore.png",    
+            "textures/blocks/gold_ore.png",    
+            "textures/blocks/iron_ore.png",    
+            "textures/blocks/lapis_ore.png",   
+            "textures/blocks/diamond_ore.png", 
+            "textures/blocks/emerald_ore.png",
+            "textures/blocks/gravel.png",
+            "textures/blocks/coal_block.png",    
+            "textures/blocks/gold_block.png",    
+            "textures/blocks/iron_block.png",    
+            "textures/blocks/lapis_block.png",   
+            "textures/blocks/diamond_block.png", 
+            "textures/blocks/emerald_block.png",
+            "textures/blocks/glowstone.png",   
+            "textures/blocks/netherrack.png", 
+            "textures/blocks/nether_brick.png",
+            "textures/blocks/stone_andesite.png",
+            "textures/blocks/stone_granite.png",
+            "textures/blocks/planks_oak.png",
+            "textures/blocks/planks_spruce.png",
+            "textures/blocks/planks_birch.png",
+            "textures/blocks/planks_jungle.png",
+            "textures/blocks/planks_spruce.png",
+            "textures/blocks/planks_big_oak.png",
+            "textures/blocks/planks_acacia.png",
+            "textures/blocks/pale_oak_planks.png",
+            "textures/blocks/cherry_planks.png"
+        ];
+
+        const bloxdPaths = [
+            "textures/dirt.png",
+            "textures/stone.png",
+            "textures/sand.png",
+            "textures/red_sand.png",
+            "textures/mega_compressed_messy_stone.png",
+            "textures/bedrock.png",
+            "textures/log_maple.png",
+            "textures/log_cedar.png",
+            "textures/log_aspen.png",
+            "textures/log_jungle.png",
+            "textures/log_cedar.png",
+            "textures/log_pine.png",
+            "textures/log_plum.png",
+            "textures/log_pear.png",
+            "textures/log_cherry.png",
+            "textures/coal_ore.png",
+            "textures/gold_ore.png",
+            "textures/iron_ore.png",
+            "textures/lapis_ore.png",
+            "textures/diamond_ore.png",
+            "textures/emerald_ore.png",
+            "textures/gravel.png",
+            "textures/coal_block.png",    
+            "textures/gold_block.png",    
+            "textures/iron_block.png",    
+            "textures/lapis_block.png",   
+            "textures/diamond_block.png", 
+            "textures/emerald_block.png",
+            "textures/glowstone.png",   
+            "textures/netherrack.png", 
+            "textures/nether_brick.png",
+            "textures/stone_andesite.png",
+            "textures/stone_granite.png",
+            "textures/planks_maple.png",
+            "textures/planks_cedar.png",
+            "textures/planks_aspen.png",
+            "textures/planks_jungle.png",
+            "textures/planks_cedar.png",
+            "textures/planks_pine.png",
+            "textures/planks_plum.png",
+            "textures/planks_pear.png",
+            "textures/planks_cherry.png"
+        ];
+
+        let selectedFileBlob = null;
+        const fileInput = document.getElementById('fileInput');
+        const convertBtn = document.getElementById('convertBtn');
+        const logDiv = document.getElementById('log');
+
+        // Handle selected archive file
+        fileInput.addEventListener('change', (e) => {
+            const files = e.target.files;
+            if (!files || files.length === 0) return;
+
+            const file = files[0];
+
+            // Double check file extensions programmatically
+            const extension = file.name.split('.').pop().toLowerCase();
+            if (extension !== 'zip' && extension !== 'mcpack') {
+                logText(`❌ Error: Invalid file format (.${extension}). Please upload a .zip or .mcpack file.`);
+                convertBtn.disabled = true;
+                return;
+            }
+
+            selectedFileBlob = file;
+            logDiv.innerHTML = "";
+            logText(`Loaded archive file: <strong>${file.name}</strong>`);
+            convertBtn.disabled = false;
+        });
+
+        // Extract package, apply structural swap matrix, down-compile archive
+        convertBtn.addEventListener('click', async () => {
+            if (!selectedFileBlob) return;
+            
+            if (typeof JSZip === 'undefined') {
+                logText("❌ Error: The browser completely blocked the zip library script. Try disabling your ad-blocker or extensions on this file page.");
+                return;
+            }
+
+            logText("Opening texture pack archive...");
+
+            try {
+                const sourceZip = new JSZip();
+                const targetZip = new JSZip();
+                
+                const loadedZip = await sourceZip.loadAsync(selectedFileBlob);
+                let matchCount = 0;
+
+                logText("Scanning internal folder layout and matching index paths...");
+
+                for (let i = 0; i < mcPaths.length; i++) {
+                    const mcTarget = mcPaths[i];
+                    const bloxdDestination = bloxdPaths[i];
+
+                    let internalZipFile = loadedZip.file(mcTarget);
+                    
+                    if (!internalZipFile) {
+                        for (let relativePath in loadedZip.files) {
+                            if (relativePath.endsWith(mcTarget)) {
+                                internalZipFile = loadedZip.file(relativePath);
+                                break;
+                            }
+                        }
+                    }
+
+                    if (internalZipFile) {
+                        const fileBuffer = await internalZipFile.async("uint8array");
+                        targetZip.file(bloxdDestination, fileBuffer);
+                        logText(`Matched: ${mcTarget} -> ${bloxdDestination}`);
+                        matchCount++;
+                    } else {
+                        logText(`Skipped (Missing source block file): ${mcTarget}`);
+                    }
+                }
+
+                if (matchCount === 0) {
+                    logText("❌ Error: No matching texture files found inside the archive structure.");
+                    return;
+                }
+
+                logText("Compiling custom Bloxd texture pack archive...");
+                
+                const content = await targetZip.generateAsync({ type: "blob" });
+                const link = document.createElement("a");
+                link.href = URL.createObjectURL(content);
+                link.download = "bloxd_converted_pack.zip";
+                link.click();
+                
+                logText("✨ Success! Converted pack has been downloaded.");
+
+            } catch (err) {
+                logText(`❌ Library Error processing file: ${err.message}`);
+            }
+        });
+
+        function logText(text) {
+            logDiv.innerHTML += text + "<br>";
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+    </script>
+</body>
+</html>
