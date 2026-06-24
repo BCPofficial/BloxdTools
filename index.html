@@ -25,136 +25,199 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <!-- end custom head snippets -->
     <style>
-      /* Modern Minimalist Light Theme Definitions */
+      /* Light Dashboard Design Core System Tokens */
       :root {
-        --bg-color: #f8f9fa; /* Google off-white canvas bg */
-        --card-bg: #ffffff; /* Clean white container */
-        --card-border: #dadce0; /* Google material UI border */
-        --text-main: #202124; /* Google black / charcoal text */
-        --text-muted: #5f6368; /* Google medium gray text */
-        --accent-blue: #70acff; /* Your custom blue color token */
-        --accent-hover-bg: rgba(112, 172, 255, 0.08); 
+        --bg-color: #f8f9fa; /* Google off-white */
+        --text-main: #202124; /* Google black */
+        --text-muted: #5f6368; /* Google medium grey */
+        --accent-blue: #70acff; /* Custom blue hover parameter */
+        --border-color: #dadce0; /* Minimal divider line color */
+        --card-bg: #ffffff; /* Clean white card face */
       }
 
       body {
-        font-family: 'Product Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        font-family: Arial, sans-serif;
         background-color: var(--bg-color);
         color: var(--text-main);
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         margin: 0;
-        padding: 24px;
+        padding: 0;
         box-sizing: border-box;
       }
 
-      /* Container Card Layout */
-      .container-lg.px-3.my-5.markdown-body {
-        background: var(--card-bg);
-        border: 1px solid var(--card-border);
-        border-radius: 16px;
-        padding: 40px;
-        max-width: 480px;
-        width: 100%;
-        box-shadow: 0 1px 3px rgba(23,23,23,0.05), 
-                    0 10px 30px rgba(23,23,23,0.04);
-        text-align: center;
-        box-sizing: border-box;
+      /* Clean Top Branding Header Container */
+      .header-section {
+        background-color: var(--card-bg);
+        border-bottom: 1px solid var(--border-color);
+        padding: 20px 40px;
       }
 
-      /* Typography Settings */
       h1 {
-        font-size: 2.25rem;
+        font-size: 28px;
         font-weight: 700;
-        letter-spacing: -0.03em;
+        margin: 0;
+        letter-spacing: -0.5px;
         color: var(--text-main);
-        margin: 0 0 4px 0;
       }
 
       h3 {
+        font-size: 14px;
+        font-weight: 500;
+        margin: 4px 0 0 0;
         color: var(--text-muted);
-        font-size: 0.95rem;
-        font-weight: 400;
-        margin: 0 0 36px 0;
       }
 
-      /* Original Base Anchor Elements With JS Dynamic Variables Kept Intact */
+      /* Preserving baseline functional link parameters for Javascript scaling */
       a {
         color: var(--text-main);
         text-decoration: none;
         font-weight: 700;
         font-size: var(--current-size, 16px);
-        transition: color 0.2s ease, font-size 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-        display: inline-block;
+        transition: color 0.2s ease, font-size 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
       }
 
-      /* Global Hover Animation Settings */
       a:hover {
         color: var(--accent-blue);
         font-size: calc(var(--current-size, 16px) + 2px); 
       }
 
-      /* Author Link Custom Badge */
-      h3 a {
-        background-color: #f1f3f4;
-        padding: 6px 14px;
-        border-radius: 20px;
-        color: var(--text-main);
-        border: 1px solid transparent;
-        vertical-align: middle;
-      }
-
-      h3 a:hover {
-        background-color: var(--accent-hover-bg);
-        border-color: rgba(112, 172, 255, 0.3);
-      }
-
-      /* Redesigned Button for the Tool Link */
-      div[align="center"] {
-        margin-top: 12px;
-      }
-
-      div[align="center"] br {
-        display: none; /* Removed messy spacer tags in favor of modern CSS margins */
-      }
-
-      div[align="center"] a {
-        background: var(--card-bg);
-        border: 1px solid var(--card-border);
-        color: var(--text-main);
-        padding: 16px 24px;
-        border-radius: 12px;
-        font-size: 15px;
-        font-weight: 700;
-        width: 100%;
+      /* Main Dynamic Grid Content Container */
+      .container-lg.px-3.my-5.markdown-body {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 40px;
         box-sizing: border-box;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
       }
 
-      div[align="center"] a:hover {
+      /* Grid Wrapper to support infinite item addition cleanly */
+      .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px;
+        margin-top: 20px;
+      }
+
+      /* Dashboard Tool Card Framework with sketch curved edges */
+      .tool-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 16px; /* Smooth rounded custom styling */
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+      }
+
+      .tool-card:hover {
         border-color: var(--accent-blue);
-        background-color: var(--accent-hover-bg);
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(112, 172, 255, 0.1);
+        box-shadow: 0 4px 12px rgba(112, 172, 255, 0.15);
+        transform: translateY(-2px);
+      }
+
+      /* Embedded Thumbnail Frame styling */
+      .thumbnail-container {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        background-color: #f1f3f4;
+        border-bottom: 1px solid var(--border-color);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .thumbnail-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* Lower Metadata Typography Block */
+      .card-content {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .tool-title-link {
+        font-size: 16px;
+        line-height: 1.4;
+        display: block;
+      }
+
+      .metadata-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+
+      .metadata-author-link {
+        color: var(--text-muted);
+        font-weight: 500;
+        font-size: 13px;
+      }
+
+      .metadata-author-link:hover {
+        color: var(--accent-blue);
+        font-size: 13px; /* Isolated tracking so badge doesn't distort row layout */
+      }
+
+      .bullet-separator {
+        color: var(--border-color);
+        user-select: none;
       }
     </style>
   </head>
   <body>
+
+    <!-- Header Branding Frame -->
+    <div class="header-section">
+      <h1>BloxdTools</h1>
+      <h3>
+        by <a href="https://bloxd.io/players/_Crafty" class="metadata-author-link">Crafty</a>
+      </h3>
+    </div>
+
+    <!-- Main Grid Content Area -->
     <div class="container-lg px-3 my-5 markdown-body">
-      <h1 style="margin-bottom: -19px;">
-        BloxdTools
-      </h1>
-       <h3>
-        by <a href="https://bloxd.io/player/_Crafty" style="--current-size: 20px;">        Crafty
-</a>
       
-       </h3>
-      <div align="center">
+      <!-- Flex alignment grid containing the cards -->
+      <div class="tools-grid">
+        
+        <!-- Tool Card Component Blueprint -->
+        <div class="tool-card">
+          <!-- Image frame reading from your requested path file -->
+          <div class="thumbnail-container">
+            <img src="tools/thumbnails/1.png" alt src="tools/thumbnails/1.txt">
+          </div>
+          
+          <!-- Content layout zone below image blueprint -->
+          <div class="card-content">
+            <a href="https://github.iobloxd/MCBEbloxdTPC" class="tool-title-link">
+              MCBE to Bloxd TPack Converter
+            </a>
+            
+            <div class="metadata-row">
+              <a href="https://bloxd.io" class="metadata-author-link" style="--current-size: 13px;">Crafty</a>
+              <span class="bullet-separator">•</span>
+              <span>2d ago</span>
+            </div>
+          </div>
+        </div>
+        <!-- End Tool Card -->
+
+      </div>
+
+      <!-- Maintained positioning anchor element logic block underneath grid output -->
+      <div align="center" style="display: none;">
         <br>
         <a href="https://github.iobloxd/MCBEbloxdTPC">MCBE to Bloxd TPack Converter</a>
       </div>
+
     </div>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous">
     </script>
   </body>
