@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Texture Pack Archive Converter</title>
+    <title>MCBE to Bloxd TPC</title>
     
     <!-- Primary Library Loader -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -18,8 +18,8 @@
 </head>
 <body>
 
-    <h2>Texture Pack Archive Converter</h2>
-    <p>Select your compressed Minecraft Bedrock pack (<strong>.zip</strong> or <strong>.mcpack</strong>). The tool will unpack it in memory, swap the paths, and generate a Bloxd zip.</p>
+    <h2>MCBE to Bloxd Texture Pack Converter</h2>
+    <p>Upload your Minecraft Bedrock Texture Pack (<strong>.zip</strong> or <strong>.mcpack</strong>). The tool will unpack it in memory, swap the paths, and generate a Bloxd zip.</p>
 
     <!-- Enforced File Input Box (accepts .zip and .mcpack) -->
     <div class="box" onclick="document.getElementById('fileInput').click()">
@@ -82,15 +82,23 @@
             "textures/blocks/nether_brick.png",
             "textures/blocks/stone_andesite.png",
             "textures/blocks/stone_granite.png",
+            "textures/blocks/stone_diorite.png",
             "textures/blocks/planks_oak.png",
             "textures/blocks/planks_spruce.png",
             "textures/blocks/planks_birch.png",
             "textures/blocks/planks_jungle.png",
-            "textures/blocks/planks_spruce.png",
             "textures/blocks/planks_big_oak.png",
             "textures/blocks/planks_acacia.png",
             "textures/blocks/pale_oak_planks.png",
-            "textures/blocks/cherry_planks.png"
+            "textures/blocks/cherry_planks.png",
+            "textures/blocks/stripped_oak_log.png",
+            "textures/blocks/stripped_spruce_log.png",
+            "textures/blocks/stripped_birch_log.png",
+            "textures/blocks/stripped_jungle_log.png",
+            "textures/blocks/stripped_dark_oak_log.png",
+            "textures/blocks/stripped_acacia_log.png",
+            "textures/blocks/stripped_pale_oak_log.png",
+            "textures/blocks/stripped_cherry_log.png"
         ];
 
         const bloxdPaths = [
@@ -127,15 +135,24 @@
             "textures/nether_brick.png",
             "textures/stone_andesite.png",
             "textures/stone_granite.png",
+            "textures/stone_diorite.png",
             "textures/planks_maple.png",
             "textures/planks_cedar.png",
             "textures/planks_aspen.png",
             "textures/planks_jungle.png",
-            "textures/planks_cedar.png",
             "textures/planks_pine.png",
             "textures/planks_plum.png",
             "textures/planks_pear.png",
-            "textures/planks_cherry.png"
+            "textures/planks_cherry.png",
+            "textures/stripped_maple_log.png",
+            "textures/stripped_cedar_log.png",
+            "textures/stripped_aspen_log.png",
+            "textures/stripped_jungle_log.png",
+            "textures/stripped_cedar_log.png",
+            "textures/stripped_pine_log.png",
+            "textures/stripped_plum_log.png",
+            "textures/stripped_pear_log.png",
+            "textures/stripped_cherry_log.png"
         ];
 
         let selectedFileBlob = null;
