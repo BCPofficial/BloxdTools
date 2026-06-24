@@ -9,14 +9,14 @@
     <meta name="generator" content="Jekyll v3.10.0" />
     <meta property="og:title" content="Gold" />
     <meta property="og:locale" content="en_US" />
-    <link rel="canonical" href="https://itscraftyminded14.github.io/" />
-    <meta property="og:url" content="https://itscraftyminded14.github.io/" />
+    <link rel="canonical" href="https://github.io" />
+    <meta property="og:url" content="https://github.io" />
     <meta property="og:site_name" content="Gold" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary" />
     <meta property="twitter:title" content="Gold" />
     <script type="application/ld+json">
-      {&#34;@context&#34;:&#34;https://schema.org&#34;,&#34;@type&#34;:&#34;WebSite&#34;,&#34;headline&#34;:&#34;Gold&#34;,&#34;name&#34;:&#34;Gold&#34;,&#34;url&#34;:&#34;https://itscraftyminded14.github.io/&#34;}
+      {"@context":"https://schema.org","@type":"WebSite","headline":"Gold","name":"Gold","url":"https://github.io"}
     </script>
     <!-- End Jekyll SEO tag -->
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
@@ -25,23 +25,121 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <!-- end custom head snippets -->
     <style>
-  body {
-    font-family: Arial, sans-serif;
-  }
-      a {
-  color: #202124;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: var(--current-size, 16px);
-  transition: color 0.2s ease, font-size 0.2s ease;
-}
+      /* Modern Minimalist Light Theme Definitions */
+      :root {
+        --bg-color: #f8f9fa; /* Google off-white canvas bg */
+        --card-bg: #ffffff; /* Clean white container */
+        --card-border: #dadce0; /* Google material UI border */
+        --text-main: #202124; /* Google black / charcoal text */
+        --text-muted: #5f6368; /* Google medium gray text */
+        --accent-blue: #70acff; /* Your custom blue color token */
+        --accent-hover-bg: rgba(112, 172, 255, 0.08); 
+      }
 
-a:hover {
-  color: #70acff;
-  font-size: calc(var(--current-size, 16px) + 2px); 
-}
-</style>
-</head>
+      body {
+        font-family: 'Product Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 24px;
+        box-sizing: border-box;
+      }
+
+      /* Container Card Layout */
+      .container-lg.px-3.my-5.markdown-body {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 40px;
+        max-width: 480px;
+        width: 100%;
+        box-shadow: 0 1px 3px rgba(23,23,23,0.05), 
+                    0 10px 30px rgba(23,23,23,0.04);
+        text-align: center;
+        box-sizing: border-box;
+      }
+
+      /* Typography Settings */
+      h1 {
+        font-size: 2.25rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: var(--text-main);
+        margin: 0 0 4px 0;
+      }
+
+      h3 {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        font-weight: 400;
+        margin: 0 0 36px 0;
+      }
+
+      /* Original Base Anchor Elements With JS Dynamic Variables Kept Intact */
+      a {
+        color: var(--text-main);
+        text-decoration: none;
+        font-weight: 700;
+        font-size: var(--current-size, 16px);
+        transition: color 0.2s ease, font-size 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        display: inline-block;
+      }
+
+      /* Global Hover Animation Settings */
+      a:hover {
+        color: var(--accent-blue);
+        font-size: calc(var(--current-size, 16px) + 2px); 
+      }
+
+      /* Author Link Custom Badge */
+      h3 a {
+        background-color: #f1f3f4;
+        padding: 6px 14px;
+        border-radius: 20px;
+        color: var(--text-main);
+        border: 1px solid transparent;
+        vertical-align: middle;
+      }
+
+      h3 a:hover {
+        background-color: var(--accent-hover-bg);
+        border-color: rgba(112, 172, 255, 0.3);
+      }
+
+      /* Redesigned Button for the Tool Link */
+      div[align="center"] {
+        margin-top: 12px;
+      }
+
+      div[align="center"] br {
+        display: none; /* Removed messy spacer tags in favor of modern CSS margins */
+      }
+
+      div[align="center"] a {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        color: var(--text-main);
+        padding: 16px 24px;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 700;
+        width: 100%;
+        box-sizing: border-box;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      }
+
+      div[align="center"] a:hover {
+        border-color: var(--accent-blue);
+        background-color: var(--accent-hover-bg);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(112, 172, 255, 0.1);
+      }
+    </style>
+  </head>
   <body>
     <div class="container-lg px-3 my-5 markdown-body">
       <h1 style="margin-bottom: -19px;">
@@ -54,7 +152,7 @@ a:hover {
        </h3>
       <div align="center">
         <br>
-        <a href="https://itscraftyminded14.github.io/bloxd/MCBEbloxdTPC">MCBE to Bloxd TPack Converter</a>
+        <a href="https://github.iobloxd/MCBEbloxdTPC">MCBE to Bloxd TPack Converter</a>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous">
