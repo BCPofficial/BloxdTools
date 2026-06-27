@@ -63,10 +63,42 @@
       .header-section {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         gap: 7px;
         background-color: var(--card-bg);
         border-bottom: 1px solid var(--border-color);
         padding: 15px 15px;
+      }
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .discord-icon {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+        transition: transform 0.2s ease, filter 0.2s ease;
+      }
+
+      .discord-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+      }
+
+      .discord-link:hover .discord-icon {
+        transform: scale(1.1);
+        filter: brightness(0.8);
       }
 
       h1 {
@@ -192,10 +224,17 @@
 
     <!-- Header Branding Frame -->
     <div class="header-section">
-      <img src="favicon.svg" class="site-logo" />
-      <div class="site-branding">
-        <h1>BloxdTools</h1>
-        <h3>by <a href="https://bloxd.io/player/_Crafty" class="metadata-author-link">Crafty</a></h3>
+      <div class="header-left">
+        <img src="favicon.svg" class="site-logo" />
+        <div class="site-branding">
+          <h1>BloxdTools</h1>
+          <h3>by <a href="https://bloxd.io/player/_Crafty" class="metadata-author-link">Crafty</a></h3>
+        </div>
+      </div>
+      <div class="header-right">
+        <a href="https://discord.com/invite/C2TVxDSep3" class="discord-link" target="_blank" rel="noopener noreferrer" title="Join our Discord">
+          <img src="img/discord-logo.svg" class="discord-icon" alt="Discord" />
+        </a>
       </div>
     </div>
 
