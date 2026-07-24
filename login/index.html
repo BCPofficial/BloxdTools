@@ -69,9 +69,9 @@ Login with Google
 </button>
 
 
-<button id="microsoft" onclick="login('microsoft')">
-<img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg">
-Login with Microsoft
+<button id="discord" onclick="login('discord')">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Discord_logo.svg">
+Login with Discord
 </button>
 
 </div>
@@ -84,46 +84,54 @@ Complete!
 </div>
 
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 
-let popup;
+const supabaseClient = supabase.createClient(
+    "https://teqlwaiasfhlptolmyii.supabase.co",
+    "YOUR_PUBLISHABLE_KEY"
+);
 
 
-function login(provider){
+async function login(provider){
 
     let button = document.getElementById(provider);
 
     button.classList.add("loading");
-
     button.innerHTML = "Loading...";
 
 
-    popup = window.open(
-        "https://example.com/auth/" + provider,
-        "auth",
-        "width=500,height=700"
-    );
+    await supabaseClient.auth.signInWithOAuth({
+
+        provider: provider,
+
+        options:{
+            redirectTo:"http://localhost:3000"
+        }
+
+    });
 
 }
 
 
+// Check if already logged in
 
-window.addEventListener("message", event=>{
+supabaseClient.auth.onAuthStateChange(
+(event, session)=>{
 
-    if(event.data === "authSuccess"){
-
-        if(popup)
-            popup.close();
-
+    if(session){
 
         document.getElementById("login").style.display="none";
+
         document.getElementById("complete").style.display="block";
 
     }
 
 });
 
+
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 </body>
 </html>
